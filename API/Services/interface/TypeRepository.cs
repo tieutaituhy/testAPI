@@ -51,9 +51,9 @@ namespace API.Services
             };
         }
 
-        public void Update(TypeModel type, int Id)
+        public void Update(TypeVM type)
         {
-            var types = _context.TypeProducts.SingleOrDefault(t => t.TypeId == Id);
+            var types = _context.TypeProducts.SingleOrDefault(t => t.TypeId == type.TypeId);
             type.TypeName = types.TypeName;
             _context.SaveChanges();
         }

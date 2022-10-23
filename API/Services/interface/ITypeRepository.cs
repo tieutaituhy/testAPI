@@ -8,7 +8,7 @@ namespace API.Services
         List<TypeVM> GetAllTypes();
         TypeVM GetById(int Id);
         TypeVM Add(TypeModel type);
-        void Update(TypeModel type, int Id);
+        void Update(TypeVM type);
         void Delete(int Id);
         //List<TypeVM> GetAllAllTypes();
     }

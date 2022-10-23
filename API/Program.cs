@@ -19,7 +19,10 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseMySql(ConnectionString, ServerVersion.AutoDetect(ConnectionString));
 });
-builder.Services.AddScoped<ITypeRepository, TypeRepository>();
+
+
+//builder.Services.AddScoped<ITypeRepository, TypeRepository>();
+builder.Services.AddScoped<ITypeRepository, TypeRopositoryInMemory>(); 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
