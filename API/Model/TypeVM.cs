@@ -2,10 +2,9 @@
 
 namespace API.Model
 {
-    public class TypeModel
+    public class TypeVM
     {
-        //public 
-        [MaxLength(50)]
+        public int? TypeId { get; set; }
         public string TypeName { get; set; }
     }
 }

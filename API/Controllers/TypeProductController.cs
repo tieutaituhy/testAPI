@@ -1,6 +1,7 @@
 ﻿using API.Data;
 using API.Helpers;
 using API.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -19,8 +20,15 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var ListType = _context.TypeProducts.ToList();
-            return Ok(ListType);
+            try
+            {
+                var ListType = _context.TypeProducts.ToList();
+                return Ok(ListType);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
 
@@ -36,6 +44,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public IActionResult Create(TypeModel model)
         {
             try
@@ -46,7 +55,7 @@ namespace API.Controllers
                 };
                 _context.Add(type);
                 _context.SaveChanges();
-                return Ok(type);
+                return StatusCode(StatusCodes.Status201Created, type);
             }
             catch
             {
@@ -64,6 +73,19 @@ namespace API.Controllers
                 ListType.TypeName = model.TypeName;
                 _context.SaveChanges();
                 return NoContent();
+            }
+            return NotFound();
+        }
+
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteById(int Id)
+        {
+            var ListType = _context.TypeProducts.SingleOrDefault(l => l.TypeId == Id);
+            if (ListType != null)
+            {
+                _context.Remove(ListType);
+                _context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK);
             }
             return NotFound();
         }
