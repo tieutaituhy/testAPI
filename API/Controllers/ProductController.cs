@@ -44,7 +44,7 @@ namespace API.Controllers
             var hh = new Product
             {
                 ProductId = Guid.NewGuid(),
-                ProductVMName = productVM.ProductVMName,
+                ProductName = productVM.ProductName,
                 Price = productVM.Price
             };
             products.Add(hh);
@@ -70,7 +70,7 @@ namespace API.Controllers
                 {
                     return BadRequest();
                 }
-                hh.ProductVMName = Edit.ProductVMName;
+                hh.ProductName = Edit.ProductName;
                 hh.Price = Edit.Price;
                 return Ok();
             }
