@@ -22,7 +22,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 
 builder.Services.AddScoped<ITypeRepository, TypeRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ITypeRepository, TypeRopositoryInMemory>(); 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

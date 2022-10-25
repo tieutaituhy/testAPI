@@ -1,11 +1,13 @@
 ﻿using API.Helpers;
 using API.Model;
+using Intuit.Ipp.Core.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Services
 {
     public class ProductRepository : IProductRepository
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public ProductRepository(DataContext context)
         {
@@ -15,6 +17,11 @@ namespace API.Services
         public List<ProductModel> GetAll(string seach)
         {
             var products = _context.products.AsQueryable();
+
+            if(products == null)
+            {
+                return null;
+            }
             if (!string.IsNullOrEmpty(seach))
             {
                 products = products.Where(p => p.Name.Contains(seach));

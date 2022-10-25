@@ -8,14 +8,14 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
 
         public ProductsController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult GetAllProducts(string seach)
         {
             try
